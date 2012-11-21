@@ -2,7 +2,10 @@ package org.bm.modules.about;
 
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyVetoException;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import org.bm.modules.about.frame.AboutModuleFrame;
@@ -12,6 +15,7 @@ import org.bm.modules.shared.ModuleFrame;
 public class AboutModule implements IModule {
 
     private final ModuleFrame frame = new AboutModuleFrame();
+    private Boolean active = Boolean.TRUE;
 
     @Override
     public void attach() {
@@ -19,6 +23,12 @@ public class AboutModule implements IModule {
 
     @Override
     public void deattach() {
+        try {
+            frame.setVisible(false);
+            frame.setClosed(true);
+        } catch (PropertyVetoException e) {
+        }
+        frame.getComponentContainer().getWindowManager().removeWindow(frame);
     }
 
     @Override
@@ -55,8 +65,7 @@ public class AboutModule implements IModule {
     @Override
     public KeyStroke getAccelerator() {
 
-        return KeyStroke.getKeyStroke(KeyEvent.VK_COMMA,
-                InputEvent.CTRL_DOWN_MASK);
+        return KeyStroke.getKeyStroke(KeyEvent.VK_COMMA, InputEvent.CTRL_DOWN_MASK);
     }
 
     @Override
@@ -64,4 +73,28 @@ public class AboutModule implements IModule {
         return frame;
     }
 
+    @Override
+    public String getVersion() {
+        return "0.0.0.1";
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " [" + getVersion() + "]";
+    }
+
+    @Override
+    public Boolean isActive() {
+        return active;
+    }
+
+    @Override
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public Boolean isDeactivable() {
+        return true;
+    }
 }
