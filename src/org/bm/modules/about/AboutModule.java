@@ -4,8 +4,6 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import org.bm.modules.about.frame.AboutModuleFrame;
@@ -19,7 +17,9 @@ public class AboutModule implements IModule {
    private Boolean active = Boolean.TRUE;
 
    @Override
-   public void attach() {}
+   public void attach() {
+      frame.initComponents();
+   }
 
    @Override
    public void deattach() {
