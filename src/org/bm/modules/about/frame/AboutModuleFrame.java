@@ -17,7 +17,6 @@ import org.bm.modules.shared.IModule;
 import org.bm.modules.shared.ModuleFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
-import com.jgoodies.forms.debug.FormDebugPanel;
 import com.jgoodies.forms.factories.Borders;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.FormLayout;
@@ -88,7 +87,7 @@ public class AboutModuleFrame extends ModuleFrame {
 
       FormLayout layout = new FormLayout("3dlu:g, f:p, 7dlu, f:p, 3dlu", "f:p:g, 3dlu, p");
       layout.setColumnGroups(new int[][] { { 2, 4 } });
-      PanelBuilder pb = new PanelBuilder(layout, new FormDebugPanel());
+      PanelBuilder pb = new PanelBuilder(layout);
 
       pb.border(Borders.DIALOG);
 
